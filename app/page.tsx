@@ -1,64 +1,60 @@
 import Image from "next/image";
 
+const images: { src: string; caption: string }[] = [
+  { src: "/images/DSCF0050.JPG", caption: "DSCF0050" },
+  { src: "/images/DSCF0051.JPG", caption: "DSCF0051" },
+  { src: "/images/DSCF0054.JPG", caption: "DSCF0054" },
+  { src: "/images/DSCF0057.JPG", caption: "DSCF0057" },
+  { src: "/images/DSCF0067.JPG", caption: "DSCF0067" },
+  { src: "/images/DSCF0077.JPG", caption: "DSCF0077" },
+  { src: "/images/DSCF0082.JPG", caption: "DSCF0082" },
+  { src: "/images/DSCF0088.JPG", caption: "DSCF0088" },
+  { src: "/images/DSCF0089.JPG", caption: "DSCF0089" },
+  { src: "/images/DSCF0090.JPG", caption: "DSCF0090" },
+  { src: "/images/DSCF0092.JPG", caption: "DSCF0092" },
+];
+
 export default function Home() {
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
+    <div className="flex flex-col flex-1 items-center bg-zinc-50 font-sans dark:bg-black">
+      <main className="flex w-full max-w-3xl flex-col gap-24 py-16 px-4">
+        <header className="flex flex-col gap-4">
+          <h1 className="text-3xl font-semibold tracking-tight text-black dark:text-zinc-50">
+            Bringing Slack and Linear into VSCode
           </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
+          <p className="text-lg leading-8 text-zinc-600 dark:text-zinc-300">
+            A few stills from a VSCode extension I built that brings{" "}
+            <span className="font-medium text-zinc-900 dark:text-zinc-100">
+              Slack
+            </span>{" "}
+            (a communication platform) and{" "}
+            <span className="font-medium text-zinc-900 dark:text-zinc-100">
+              Linear
+            </span>{" "}
+            (a ticketing platform) directly into{" "}
+            <span className="font-medium text-zinc-900 dark:text-zinc-100">
+              VSCode
+            </span>
+            . The goal: better context engineering and improved agentic
+            workflows, by keeping the conversations and tickets that shape your
+            work one keystroke away from the code itself.
           </p>
-        </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
+        </header>
+        {images.map(({ src, caption }, i) => (
+          <figure key={src} className="flex flex-col gap-3">
             <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
+              src={src}
+              alt={caption}
+              width={1600}
+              height={1067}
+              className="h-auto w-full rounded-md ring-1 ring-black/10 dark:ring-white/10 shadow-sm"
+              priority={i === 0}
             />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
+            <figcaption className="text-sm text-zinc-600 dark:text-zinc-400">
+              {caption}
+            </figcaption>
+          </figure>
+        ))}
       </main>
     </div>
   );
