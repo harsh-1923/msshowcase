@@ -1,8 +1,9 @@
 import Image from "next/image";
+import SearchCarousel from "./search-carousel";
 
 export default function Home() {
   return (
-    <div className="flex flex-col flex-1 items-center bg-zinc-50 font-sans dark:bg-black">
+    <div className="flex flex-col flex-1 items-center overflow-x-hidden bg-zinc-50 font-sans dark:bg-black">
       <main className="flex w-full max-w-3xl flex-col gap-24 py-16 px-4">
         <div className="flex flex-col items-center gap-4">
           <small className="font-mono text-[11px] uppercase tracking-wider text-zinc-500 dark:text-zinc-400">
@@ -325,6 +326,7 @@ export default function Home() {
             </p>
           </aside>
         </header>
+        <SearchCarousel />
         <figure className="flex flex-col gap-3">
           <h2 className="text-2xl font-semibold tracking-tight text-black dark:text-zinc-50">
             Unified Search
