@@ -13,166 +13,192 @@ export default function Home() {
             className="flex w-full flex-col items-center gap-4 text-zinc-900 dark:text-zinc-100"
             aria-label="Venn diagram of Slack/Teams, Linear/Jira and VSCode. Shared context in green, missed context hatched in red."
           >
-          <svg viewBox="0 0 400 300" className="w-full max-w-lg" role="img">
-            <defs>
-              <pattern
-                id="hatch"
-                patternUnits="userSpaceOnUse"
-                width="7"
-                height="7"
-                patternTransform="rotate(45)"
+            <svg viewBox="0 0 400 300" className="w-full max-w-lg" role="img">
+              <defs>
+                <pattern
+                  id="hatch"
+                  patternUnits="userSpaceOnUse"
+                  width="7"
+                  height="7"
+                  patternTransform="rotate(45)"
+                >
+                  <line
+                    x1="0"
+                    y1="0"
+                    x2="0"
+                    y2="7"
+                    stroke="#ef4444"
+                    strokeWidth="1.25"
+                    strokeOpacity="0.6"
+                  />
+                </pattern>
+                <mask id="m-top">
+                  <rect width="400" height="300" fill="black" />
+                  <circle cx="200" cy="128" r="80" fill="white" />
+                  <circle cx="150" cy="202" r="80" fill="black" />
+                  <circle cx="250" cy="202" r="80" fill="black" />
+                </mask>
+                <mask id="m-bl">
+                  <rect width="400" height="300" fill="black" />
+                  <circle cx="150" cy="202" r="80" fill="white" />
+                  <circle cx="200" cy="128" r="80" fill="black" />
+                  <circle cx="250" cy="202" r="80" fill="black" />
+                </mask>
+                <mask id="m-br">
+                  <rect width="400" height="300" fill="black" />
+                  <circle cx="250" cy="202" r="80" fill="white" />
+                  <circle cx="200" cy="128" r="80" fill="black" />
+                  <circle cx="150" cy="202" r="80" fill="black" />
+                </mask>
+                <mask id="in-a">
+                  <rect width="400" height="300" fill="black" />
+                  <circle cx="200" cy="128" r="80" fill="white" />
+                </mask>
+                <mask id="in-b">
+                  <rect width="400" height="300" fill="black" />
+                  <circle cx="150" cy="202" r="80" fill="white" />
+                </mask>
+                <mask id="in-c">
+                  <rect width="400" height="300" fill="black" />
+                  <circle cx="250" cy="202" r="80" fill="white" />
+                </mask>
+                <mask id="out-a">
+                  <rect width="400" height="300" fill="white" />
+                  <circle cx="200" cy="128" r="80" fill="black" />
+                </mask>
+                <mask id="out-b">
+                  <rect width="400" height="300" fill="white" />
+                  <circle cx="150" cy="202" r="80" fill="black" />
+                </mask>
+                <mask id="out-c">
+                  <rect width="400" height="300" fill="white" />
+                  <circle cx="250" cy="202" r="80" fill="black" />
+                </mask>
+              </defs>
+
+              <rect
+                width="400"
+                height="300"
+                fill="url(#hatch)"
+                mask="url(#m-top)"
+              />
+              <rect
+                width="400"
+                height="300"
+                fill="url(#hatch)"
+                mask="url(#m-bl)"
+              />
+              <rect
+                width="400"
+                height="300"
+                fill="url(#hatch)"
+                mask="url(#m-br)"
+              />
+
+              <g mask="url(#in-a)">
+                <g mask="url(#in-b)">
+                  <rect
+                    width="400"
+                    height="300"
+                    fill="#facc15"
+                    fillOpacity="0.45"
+                    mask="url(#out-c)"
+                  />
+                </g>
+              </g>
+              <g mask="url(#in-a)">
+                <g mask="url(#in-c)">
+                  <rect
+                    width="400"
+                    height="300"
+                    fill="#facc15"
+                    fillOpacity="0.45"
+                    mask="url(#out-b)"
+                  />
+                </g>
+              </g>
+              <g mask="url(#in-b)">
+                <g mask="url(#in-c)">
+                  <rect
+                    width="400"
+                    height="300"
+                    fill="#facc15"
+                    fillOpacity="0.45"
+                    mask="url(#out-a)"
+                  />
+                </g>
+              </g>
+
+              <g mask="url(#in-a)">
+                <g mask="url(#in-b)">
+                  <rect
+                    width="400"
+                    height="300"
+                    fill="#10b981"
+                    fillOpacity="0.45"
+                    mask="url(#in-c)"
+                  />
+                </g>
+              </g>
+
+              <g fill="none" stroke="currentColor" strokeWidth="1.25">
+                <circle cx="200" cy="128" r="80" />
+                <circle cx="150" cy="202" r="80" />
+                <circle cx="250" cy="202" r="80" />
+              </g>
+
+              <g
+                fill="currentColor"
+                textAnchor="middle"
+                fontSize="13"
+                fontWeight="500"
               >
-                <line
-                  x1="0"
-                  y1="0"
-                  x2="0"
-                  y2="7"
-                  stroke="#ef4444"
-                  strokeWidth="1.25"
-                  strokeOpacity="0.6"
-                />
-              </pattern>
-              <mask id="m-top">
-                <rect width="400" height="300" fill="black" />
-                <circle cx="200" cy="128" r="80" fill="white" />
-                <circle cx="150" cy="202" r="80" fill="black" />
-                <circle cx="250" cy="202" r="80" fill="black" />
-              </mask>
-              <mask id="m-bl">
-                <rect width="400" height="300" fill="black" />
-                <circle cx="150" cy="202" r="80" fill="white" />
-                <circle cx="200" cy="128" r="80" fill="black" />
-                <circle cx="250" cy="202" r="80" fill="black" />
-              </mask>
-              <mask id="m-br">
-                <rect width="400" height="300" fill="black" />
-                <circle cx="250" cy="202" r="80" fill="white" />
-                <circle cx="200" cy="128" r="80" fill="black" />
-                <circle cx="150" cy="202" r="80" fill="black" />
-              </mask>
-              <mask id="in-a">
-                <rect width="400" height="300" fill="black" />
-                <circle cx="200" cy="128" r="80" fill="white" />
-              </mask>
-              <mask id="in-b">
-                <rect width="400" height="300" fill="black" />
-                <circle cx="150" cy="202" r="80" fill="white" />
-              </mask>
-              <mask id="in-c">
-                <rect width="400" height="300" fill="black" />
-                <circle cx="250" cy="202" r="80" fill="white" />
-              </mask>
-              <mask id="out-a">
-                <rect width="400" height="300" fill="white" />
-                <circle cx="200" cy="128" r="80" fill="black" />
-              </mask>
-              <mask id="out-b">
-                <rect width="400" height="300" fill="white" />
-                <circle cx="150" cy="202" r="80" fill="black" />
-              </mask>
-              <mask id="out-c">
-                <rect width="400" height="300" fill="white" />
-                <circle cx="250" cy="202" r="80" fill="black" />
-              </mask>
-            </defs>
-
-            <rect width="400" height="300" fill="url(#hatch)" mask="url(#m-top)" />
-            <rect width="400" height="300" fill="url(#hatch)" mask="url(#m-bl)" />
-            <rect width="400" height="300" fill="url(#hatch)" mask="url(#m-br)" />
-
-            <g mask="url(#in-a)">
-              <g mask="url(#in-b)">
-                <rect
-                  width="400"
-                  height="300"
-                  fill="#facc15"
-                  fillOpacity="0.45"
-                  mask="url(#out-c)"
-                />
+                <text x="200" y="36">
+                  Slack / Teams
+                </text>
+                <text x="60" y="278">
+                  Linear / Jira
+                </text>
+                <text x="340" y="278">
+                  VSCode
+                </text>
               </g>
-            </g>
-            <g mask="url(#in-a)">
-              <g mask="url(#in-c)">
-                <rect
-                  width="400"
-                  height="300"
-                  fill="#facc15"
-                  fillOpacity="0.45"
-                  mask="url(#out-b)"
+
+              <text
+                x="200"
+                y="183"
+                textAnchor="middle"
+                fill="currentColor"
+                fontSize="13"
+                fontWeight="600"
+              >
+                Context
+              </text>
+            </svg>
+            <figcaption className="flex flex-wrap items-center justify-center gap-x-5 gap-y-2 text-xs text-zinc-600 dark:text-zinc-400">
+              <span className="flex items-center gap-2">
+                <span
+                  aria-hidden
+                  className="inline-block h-3 w-3 rounded-sm bg-emerald-500/50 ring-1 ring-emerald-600/60"
                 />
-              </g>
-            </g>
-            <g mask="url(#in-b)">
-              <g mask="url(#in-c)">
-                <rect
-                  width="400"
-                  height="300"
-                  fill="#facc15"
-                  fillOpacity="0.45"
-                  mask="url(#out-a)"
+                shared
+              </span>
+              <span className="flex items-center gap-2">
+                <span
+                  aria-hidden
+                  className="inline-block h-3 w-3 rounded-sm bg-yellow-400/60 ring-1 ring-yellow-500/70"
                 />
-              </g>
-            </g>
-
-            <g mask="url(#in-a)">
-              <g mask="url(#in-b)">
-                <rect
-                  width="400"
-                  height="300"
-                  fill="#10b981"
-                  fillOpacity="0.45"
-                  mask="url(#in-c)"
+                partial
+              </span>
+              <span className="flex items-center gap-2">
+                <span
+                  aria-hidden
+                  className="inline-block h-3 w-3 rounded-sm bg-red-500/15 ring-1 ring-red-500/60"
                 />
-              </g>
-            </g>
-
-            <g fill="none" stroke="currentColor" strokeWidth="1.25">
-              <circle cx="200" cy="128" r="80" />
-              <circle cx="150" cy="202" r="80" />
-              <circle cx="250" cy="202" r="80" />
-            </g>
-
-            <g fill="currentColor" textAnchor="middle" fontSize="13" fontWeight="500">
-              <text x="200" y="36">Slack / Teams</text>
-              <text x="60" y="278">Linear / Jira</text>
-              <text x="340" y="278">VSCode</text>
-            </g>
-
-            <text
-              x="200"
-              y="183"
-              textAnchor="middle"
-              fill="currentColor"
-              fontSize="13"
-              fontWeight="600"
-            >
-              Context
-            </text>
-          </svg>
-          <figcaption className="flex flex-wrap items-center justify-center gap-x-5 gap-y-2 text-xs text-zinc-600 dark:text-zinc-400">
-            <span className="flex items-center gap-2">
-              <span
-                aria-hidden
-                className="inline-block h-3 w-3 rounded-sm bg-emerald-500/50 ring-1 ring-emerald-600/60"
-              />
-              shared
-            </span>
-            <span className="flex items-center gap-2">
-              <span
-                aria-hidden
-                className="inline-block h-3 w-3 rounded-sm bg-yellow-400/60 ring-1 ring-yellow-500/70"
-              />
-              partial
-            </span>
-            <span className="flex items-center gap-2">
-              <span
-                aria-hidden
-                className="inline-block h-3 w-3 rounded-sm bg-red-500/15 ring-1 ring-red-500/60"
-              />
-              missed
-            </span>
-          </figcaption>
-        </figure>
+                missed
+              </span>
+            </figcaption>
+          </figure>
         </div>
         {/* <figure
           className="flex w-full flex-col items-center gap-5"
@@ -326,7 +352,6 @@ export default function Home() {
             </p>
           </aside>
         </header>
-        <SearchCarousel />
         <figure className="flex flex-col gap-3">
           <h2 className="text-2xl font-semibold tracking-tight text-black dark:text-zinc-50">
             Unified Search
@@ -428,7 +453,7 @@ export default function Home() {
             </figcaption>
           </figure>
         </section>
-        <figure className="flex flex-col gap-3">
+        {/* <figure className="flex flex-col gap-3">
           <Image
             src="/images/DSCF0088.JPG"
             alt="DSCF0088"
@@ -439,7 +464,7 @@ export default function Home() {
           <figcaption className="text-sm text-zinc-600 dark:text-zinc-400">
             DSCF0088
           </figcaption>
-        </figure>
+        </figure> */}
         {/* <figure className="flex flex-col gap-3">
           <Image
             src="/images/DSCF0089.JPG"
@@ -464,6 +489,12 @@ export default function Home() {
             DSCF0092
           </figcaption>
         </figure> */}
+        <section className="flex flex-col gap-6">
+          <h2 className="text-2xl font-semibold tracking-tight text-black dark:text-zinc-50">
+            A few more stills
+          </h2>
+          <SearchCarousel />
+        </section>
       </main>
     </div>
   );

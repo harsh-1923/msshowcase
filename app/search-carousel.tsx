@@ -5,16 +5,38 @@ import { useCallback, useEffect, useState } from "react";
 import useEmblaCarousel from "embla-carousel-react";
 
 const slides = [
-  { src: "/images/one.png", alt: "Search results from multiple surfaces" },
-  { src: "/images/two.png", alt: "Inline thread preview inside VSCode" },
+  {
+    src: "/images/one.png",
+    alt: "IDE, Figma and chat side by side",
+    caption: "IDE + Figma + Chat",
+  },
+  {
+    src: "/images/two.png",
+    alt: "IDE with notes and an AI agent",
+    caption: "IDE + Notes + AI Agent",
+  },
+  {
+    src: "/images/three.png",
+    alt: "Agent command center",
+    caption: "Agent Command Center",
+  },
+  {
+    src: "/images/DSCF0088.JPG",
+    alt: "IDE with ticket details",
+    caption: "IDE + Ticket Details",
+  },
 ];
 
 export default function SearchCarousel() {
-  const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true, align: "center" });
+  const [emblaRef, emblaApi] = useEmblaCarousel({
+    loop: true,
+    align: "center",
+    containScroll: false,
+    dragFree: false,
+    skipSnaps: false,
+  });
   const [selected, setSelected] = useState(0);
 
-  const scrollPrev = useCallback(() => emblaApi?.scrollPrev(), [emblaApi]);
-  const scrollNext = useCallback(() => emblaApi?.scrollNext(), [emblaApi]);
   const scrollTo = useCallback(
     (i: number) => emblaApi?.scrollTo(i),
     [emblaApi]
@@ -25,53 +47,51 @@ export default function SearchCarousel() {
     const onSelect = () => setSelected(emblaApi.selectedScrollSnap());
     onSelect();
     emblaApi.on("select", onSelect);
+    emblaApi.on("reInit", onSelect);
     return () => {
       emblaApi.off("select", onSelect);
+      emblaApi.off("reInit", onSelect);
     };
   }, [emblaApi]);
 
   return (
     <div className="relative left-1/2 right-1/2 -mx-[50vw] w-screen">
-      <div className="overflow-hidden" ref={emblaRef}>
-        <div className="flex">
-          {slides.map((slide) => (
-            <div
+      <div
+        className="cursor-grab overflow-hidden active:cursor-grabbing"
+        ref={emblaRef}
+      >
+        <div className="flex touch-pan-y">
+          {slides.map((slide, i) => (
+            <button
               key={slide.src}
-              className="relative min-w-0 flex-[0_0_100%] px-4 md:px-8"
+              type="button"
+              onClick={() => scrollTo(i)}
+              aria-label={`Go to slide ${i + 1}`}
+              className={`relative min-w-0 flex-[0_0_80%] px-2 transition-opacity duration-300 md:flex-[0_0_65%] md:px-4 ${
+                selected === i
+                  ? "opacity-100"
+                  : "opacity-30 hover:opacity-60"
+              }`}
             >
-              <Image
-                src={slide.src}
-                alt={slide.alt}
-                width={1920}
-                height={1280}
-                className="mx-auto h-auto w-full max-w-6xl rounded-md ring-1 ring-black/10 dark:ring-white/10 shadow-sm"
-                priority
-              />
-            </div>
+              <figure className="flex w-full flex-col gap-3">
+                <Image
+                  src={slide.src}
+                  alt={slide.alt}
+                  width={1920}
+                  height={1280}
+                  sizes="(min-width: 768px) 65vw, 80vw"
+                  className="h-auto w-full rounded-md"
+                  priority={i === 0}
+                  draggable={false}
+                />
+                <figcaption className="text-left text-sm text-zinc-600 dark:text-zinc-400">
+                  {slide.caption}
+                </figcaption>
+              </figure>
+            </button>
           ))}
         </div>
       </div>
-
-      <button
-        type="button"
-        aria-label="Previous slide"
-        onClick={scrollPrev}
-        className="absolute left-4 top-1/2 -translate-y-1/2 rounded-full bg-white/80 p-2 text-zinc-900 ring-1 ring-black/10 backdrop-blur transition hover:bg-white dark:bg-black/60 dark:text-zinc-50 dark:ring-white/10 dark:hover:bg-black/80 md:left-8"
-      >
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round">
-          <path d="m15 18-6-6 6-6" />
-        </svg>
-      </button>
-      <button
-        type="button"
-        aria-label="Next slide"
-        onClick={scrollNext}
-        className="absolute right-4 top-1/2 -translate-y-1/2 rounded-full bg-white/80 p-2 text-zinc-900 ring-1 ring-black/10 backdrop-blur transition hover:bg-white dark:bg-black/60 dark:text-zinc-50 dark:ring-white/10 dark:hover:bg-black/80 md:right-8"
-      >
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round">
-          <path d="m9 18 6-6-6-6" />
-        </svg>
-      </button>
 
       <div className="mt-4 flex items-center justify-center gap-2">
         {slides.map((_, i) => (
