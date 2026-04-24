@@ -495,6 +495,9 @@ export default function Home() {
           </h2>
           <SearchCarousel />
         </section>
+        <small className="self-center font-mono text-[11px] uppercase tracking-wider text-zinc-500 dark:text-zinc-400">
+          thank you for your time
+        </small>
       </main>
     </div>
   );
