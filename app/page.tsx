@@ -4,11 +4,15 @@ export default function Home() {
   return (
     <div className="flex flex-col flex-1 items-center bg-zinc-50 font-sans dark:bg-black">
       <main className="flex w-full max-w-3xl flex-col gap-24 py-16 px-4">
-        <figure
-          className="flex flex-col items-center gap-4 text-zinc-900 dark:text-zinc-100"
-          aria-label="Venn diagram of Slack/Teams, Linear/Jira and VSCode. Shared context in green, missed context hatched in red."
-        >
-          <svg viewBox="0 0 400 300" className="w-full max-w-sm" role="img">
+        <div className="flex flex-col items-center gap-4">
+          <small className="font-mono text-[11px] uppercase tracking-wider text-zinc-500 dark:text-zinc-400">
+            built with Artificial Intelligence end to end
+          </small>
+          <figure
+            className="flex w-full flex-col items-center gap-4 text-zinc-900 dark:text-zinc-100"
+            aria-label="Venn diagram of Slack/Teams, Linear/Jira and VSCode. Shared context in green, missed context hatched in red."
+          >
+          <svg viewBox="0 0 400 300" className="w-full max-w-lg" role="img">
             <defs>
               <pattern
                 id="hatch"
@@ -168,6 +172,7 @@ export default function Home() {
             </span>
           </figcaption>
         </figure>
+        </div>
         {/* <figure
           className="flex w-full flex-col items-center gap-5"
           aria-label="Flow diagram showing context loss from chat to ticket to developer to agent to code"
@@ -307,10 +312,18 @@ export default function Home() {
             <span className="font-medium text-zinc-900 dark:text-zinc-100">
               VSCode
             </span>
-            . The goal: better context engineering and improved agentic
-            workflows, by keeping the conversations and tickets that shape your
-            work one keystroke away from the code itself.
+            .
           </p>
+          <aside className="relative mt-2 rounded-md border-l-4 border-emerald-500 bg-emerald-500/5 px-5 py-4 dark:border-emerald-400 dark:bg-emerald-400/10">
+            <div className="mb-1 font-mono text-[11px] uppercase tracking-wider text-emerald-700 dark:text-emerald-300">
+              The goal
+            </div>
+            <p className="text-base leading-7 text-zinc-800 dark:text-zinc-100">
+              Better context engineering and improved agentic workflows — by
+              keeping the conversations and tickets that shape your work one
+              keystroke away from the code itself.
+            </p>
+          </aside>
         </header>
         <figure className="flex flex-col gap-3">
           <h2 className="text-2xl font-semibold tracking-tight text-black dark:text-zinc-50">
